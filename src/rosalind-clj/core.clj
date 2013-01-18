@@ -37,3 +37,7 @@
   "Return the id of the sequence with the highest percentage of GC bases"
   (let [fa-map (read-fa fa)]
     (apply max-key #(gc-count (fa-map %)) (keys fa-map))))
+
+;;; HAMM
+(defn hamming [x y]
+  (reduce + (map (fn [x y] (if (= x y) 0 1)) x y)))
