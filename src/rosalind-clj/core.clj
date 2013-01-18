@@ -41,3 +41,11 @@
 ;;; HAMM
 (defn hamming [x y]
   (reduce + (map (fn [x y] (if (= x y) 0 1)) x y)))
+
+;;; SUBS
+(defn substr-pos [s t]
+  (loop [m (re-matcher (re-pattern (str/join ["(?=(" t ".*))"])) s)
+         positions []]
+    (if (.find m)
+      (recur m (conj positions (inc (.start m))))
+      positions)))
