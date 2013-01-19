@@ -24,3 +24,8 @@
       (is (and (= id "Rosalind_0808")
                (<= (java.lang.Math/abs (- (* 100.0  gc) 60.919540))
                    0.001))))))
+
+(deftest hamming-test
+  (testing "hamming"
+    (is (= (hamming "GAGCCTACTAACGGGAT" "CATCGTAATGACGGCCT")
+           7))))
