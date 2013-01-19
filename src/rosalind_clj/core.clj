@@ -34,9 +34,10 @@
               (count dna)))))
 
 (defn max-gc [fa]
-  "Return the id of the sequence with the highest percentage of GC bases"
-  (let [fa-map (read-fa fa)]
-    (apply max-key #(gc-count (fa-map %)) (keys fa-map))))
+  "Return the id and GC percentage of the sequence with the highest percentage of GC bases"
+  (let [fa-map (read-fa fa)
+        k (apply max-key #(gc-count (fa-map %)) (keys fa-map))]
+    [k (gc-count (fa-map k))]))
 
 ;;; HAMM
 (defn hamming [x y]
