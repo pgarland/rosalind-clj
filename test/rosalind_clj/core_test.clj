@@ -2,6 +2,7 @@
   (:use clojure.test
         rosalind-clj.core))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest count-nuc-test
+  (testing "count nuc"
+    (is (= (count-nuc "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")
+           "20 12 17 21"))))
