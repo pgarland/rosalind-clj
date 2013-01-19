@@ -11,3 +11,8 @@
   (testing "transcribe"
     (is (=  (transcribe "GATGGAACTTGACTACGTAAATT")
             "GAUGGAACUUGACUACGUAAAUU"))))
+
+(deftest rev-comp-test
+  (testing "rev-comp"
+    (is (= (rev-comp  "AAAACCCGGT")
+           "ACCGGGTTTT"))))
