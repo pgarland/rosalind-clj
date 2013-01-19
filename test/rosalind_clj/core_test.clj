@@ -16,3 +16,11 @@
   (testing "rev-comp"
     (is (= (rev-comp  "AAAACCCGGT")
            "ACCGGGTTTT"))))
+
+(deftest max-gc-test
+  (testing "max-gc"
+    (let [[id gc]
+          (max-gc "test/rosalind_clj/rosalind.fa")]
+      (is (and (= id "Rosalind_0808")
+               (<= (java.lang.Math/abs (- (* 100.0  gc) 60.919540))
+                   0.001))))))
