@@ -3,6 +3,11 @@
         rosalind-clj.core))
 
 (deftest count-nuc-test
-  (testing "count nuc"
+  (testing "count-nuc"
     (is (= (count-nuc "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")
            "20 12 17 21"))))
+
+(deftest transcribe-test
+  (testing "transcribe"
+    (is (=  (transcribe "GATGGAACTTGACTACGTAAATT")
+            "GAUGGAACUUGACUACGUAAAUU"))))
