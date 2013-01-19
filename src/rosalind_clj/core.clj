@@ -41,6 +41,7 @@
 
 ;;; HAMM
 (defn hamming [x y]
+  "Given two strings of equal length, return the number of positions at which the strings differ."
   (reduce + (map (fn [x y] (if (= x y) 0 1)) x y)))
 
 ;;; SUBS
