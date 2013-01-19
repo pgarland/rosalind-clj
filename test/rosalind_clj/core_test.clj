@@ -29,3 +29,8 @@
   (testing "hamming"
     (is (= (hamming "GAGCCTACTAACGGGAT" "CATCGTAATGACGGCCT")
            7))))
+
+(deftest substr-test
+  (testing "substr"
+    (is (= (substr-pos "GATATATGCATATACTT" "ATAT")
+           [2 4 10]))))
