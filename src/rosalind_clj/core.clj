@@ -1,10 +1,10 @@
-(ns com.obscureshapes.rosalind.core
+(ns rosalind-clj.core
   (:require [clojure.string :as str]))
 
 ;;; DNA
 (defn count-nuc [dna]
   "Count the number of occurances of each base in a str"
-  (str/join " " (map #(get (frequencies dna) % 0) [\A \T \C \G])))
+  (str/join " " (map #(get (frequencies dna) % 0) [\A \C \G \T])))
 
 ;;; RNA
 (defn transcribe [dna]
