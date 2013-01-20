@@ -34,3 +34,17 @@
   (testing "substr"
     (is (= (substr-pos "GATATATGCATATACTT" "ATAT")
            [2 4 10]))))
+
+(deftest consensus-test
+  (testing "consensus"
+    (let [con (consensus "test/rosalind_clj/consensus.txt")]
+      (is (and (= (:consensus con)
+                  "ATGCAACT")
+               (= (seq ((:matrix con) \A))
+                  [5 1 0 0 5 5 0 0])
+               (= (seq ((:matrix con) \C))
+                  [0 0 1 4 2 0 6 1])
+               (= (seq ((:matrix con) \G))
+                  [1 1 6 3 0 1 0 0])
+               (= (seq ((:matrix con) \T)) 
+                  [1 5 0 0 0 1 1 6]))))))
