@@ -51,3 +51,22 @@
     (if (.find m)
       (recur m (conj positions (inc (.start m))))
       positions)))
+
+;;; CONS
+(defn consensus [f]
+  (let [seqs (str/split (slurp f) #"\n")
+        len (count (first seqs))
+        ;; Create a map keyed by base, with each val an empty array corresponding to a position in the sequence
+        mat (reduce (fn [m k] (assoc m k (make-array Integer/TYPE len))) 
+                  {} 
+                  [\A \C \G \T])]
+    (doseq [s seqs
+            idx (range len)]
+      (let [chr (.charAt s idx)
+            val (aget (mat chr) idx)]
+        (aset (mat chr) idx (inc val))))
+    {:matrix mat, 
+     :consensus (apply str (for [idx (range len)]
+                             (apply max-key 
+                                    (fn [base] (aget (mat base) idx))
+                                    [\A \C \G \T])))}))
