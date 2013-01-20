@@ -46,6 +46,7 @@
 
 ;;; SUBS
 (defn substr-pos [s t]
+  "Return a sequence contains the positions of substring t in s"
   (loop [m (re-matcher (re-pattern (str/join ["(?=(" t ".*))"])) s)
          positions []]
     (if (.find m)
@@ -54,6 +55,7 @@
 
 ;;; CONS
 (defn consensus [f]
+  "Given a file containing DNA strings of equal length, return a consensus string map with a matrix containing the counts for each base at each postion."
   (let [seqs (str/split (slurp f) #"\n")
         len (count (first seqs))
         ;; Create a map keyed by base, with each val an empty array corresponding to a position in the sequence
