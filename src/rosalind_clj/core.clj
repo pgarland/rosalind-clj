@@ -72,3 +72,32 @@
                              (apply max-key 
                                     (fn [base] (aget (mat base) idx))
                                     [\A \C \G \T])))}))
+;;; GRPH
+(defn build-suffix-lists [seqs suff-len]
+  (reduce-kv (fn [m id dna] 
+               (let [suff-start (- (count dna) suff-len)]
+                 (update-in m [(subs dna suff-start)] conj id)))
+             {} 
+             seqs))
+
+(defn build-prefix-lists [seqs pre-len]
+  (reduce-kv (fn [m id dna] 
+               (let [prefix (subs dna 0 pre-len)]
+                 (update-in m [prefix] conj id)))
+             {} 
+             seqs))
+
+(defn overlap [f k]
+  "Return the k-overlap graph of the DNAs in fasta file f"
+  (let [seqs (read-fa f)
+        pres (build-suffix-lists seqs k)
+        suffs (build-prefix-lists seqs k)]
+    (reduce-kv (fn [m fix parents]
+                 (reduce (fn [m p]
+                           (let [children  (remove #{p} (suffs fix))]
+                             (assoc m p children)))
+                         m
+                         parents))
+               {}
+               pres)))
+
