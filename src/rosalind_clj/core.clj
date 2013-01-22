@@ -101,3 +101,9 @@
                {}
                pres)))
 
+(defn print-adj-list [adj-list]
+  "Print an adjacency list, with each vertex pair on a separate line"
+  (doseq [[k v] adj-list 
+          node v] 
+    (when (seq v) 
+      (println k node))))
