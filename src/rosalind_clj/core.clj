@@ -74,6 +74,9 @@
                                     [\A \C \G \T])))}))
 ;;; GRPH
 (defn build-suffix-lists [seqs suff-len]
+    "Given a map of strings keyed by id, and a prefix length, return a
+map indexed by unique suffixes of that length, where each value is a
+list of ids with that suffix"
   (reduce-kv (fn [m id dna] 
                (let [suff-start (- (count dna) suff-len)]
                  (update-in m [(subs dna suff-start)] conj id)))
@@ -81,6 +84,9 @@
              seqs))
 
 (defn build-prefix-lists [seqs pre-len]
+  "Given a map of strings keyed by id, and a prefix length, return a
+map indexed by unique prefixes of that length, where each value is a
+list of ids with that prefix"
   (reduce-kv (fn [m id dna] 
                (let [prefix (subs dna 0 pre-len)]
                  (update-in m [prefix] conj id)))
