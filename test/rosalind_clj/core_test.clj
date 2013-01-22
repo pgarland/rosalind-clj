@@ -59,7 +59,7 @@
 
 (deftest overlap-test
   (testing "overlap"
-    (let [adj-list (overlap "test/rosalind_clj/overlap.txt" 3)]
+    (let [adj-list (overlap "test/rosalind_clj/overlap.fa" 3)]
       (is (= (adj-list "Rosalind_5013") ()))
       (is (= (adj-list "Rosalind_0442") ()))
       (is (= (adj-list "Rosalind_2323") ()))
