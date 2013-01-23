@@ -39,6 +39,11 @@
         k (apply max-key #(gc-count (fa-map %)) (keys fa-map))]
     [k (gc-count (fa-map k))]))
 
+(defn print-max-gc [fa]
+  (let [[id gc] (max-gc fa)]
+    (println id) 
+    (println (str (* 100 gc) "%"))))
+
 ;;; HAMM
 (defn hamming [x y]
   "Given two strings of equal length, return the number of positions at which the strings differ."
