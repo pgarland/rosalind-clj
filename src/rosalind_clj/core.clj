@@ -118,3 +118,23 @@ list of ids with that prefix"
           node v] 
     (when (seq v) 
       (println k node))))
+
+;;; IPRB
+(defn mendelian [hd hetero hr]
+  "Return the probability that the random offspring of a population shows the dominant phenotype"
+  (let [indv (+ hd hetero hr)]
+     ;; Find the complement of the probability that a random offspring shows the recessive phenotype
+    (float (- 1 (+ 
+                 ;; Aa x Aa
+                 (* (/ hetero indv)
+                    (/ (dec hetero) (dec indv))
+                    (/ 1 4))
+                 ;; Aa x aa and aa x Aa
+                 (* 2 
+                    (/ hetero indv)
+                    (/ hr (dec indv))
+                    (/ 1 2))
+                 ;; aa x aa
+                 (* (/ hr indv)
+                    (/ (dec hr) (dec indv))
+                    1))))))
