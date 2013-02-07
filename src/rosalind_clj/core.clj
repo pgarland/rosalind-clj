@@ -77,6 +77,15 @@
                              (apply max-key 
                                     (fn [base] (aget (mat base) idx))
                                     [\A \C \G \T])))}))
+
+(defn consensus-soln [f]
+  (let [c (consensus f)]
+    (println (:consensus c))
+    (doseq [[base cnt] (:matrix c)] 
+      (print (str base ":") 
+             (str/join " " (seq cnt))))))
+
+
 ;;; GRPH
 (defn build-suffix-lists [seqs suff-len]
     "Given a map of strings keyed by id, and a prefix length, return a
@@ -148,7 +157,7 @@ list of ids with that prefix"
                  "UCA" \S,      "CCA" \P,      "ACA" \T,      "GCA" \A,
                  "UCG" \S,      "CCG" \P,      "ACG" \T,      "GCG" \A,
                  "UAU" \Y,      "CAU" \H,      "AAU" \N,      "GAU" \D,
-                 "UAC" \Y,      "CAC" \H,      "AAC" \N,      "GAC" \D
+                 "UAC" \Y,      "CAC" \H,      "AAC" \N,      "GAC" \D,
                  "UAA" nil,   "CAA" \Q,      "AAA" \K,      "GAA" \E,
                  "UAG" nil,   "CAG" \Q,      "AAG" \K,      "GAG" \E,
                  "UGU" \C,      "CGU" \R,      "AGU" \S,      "GGU" \G,
@@ -163,4 +172,3 @@ list of ids with that prefix"
      (cons (transl-map (str/join (list x y z)))
            (translate xs))
      ())))
-       
